@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+:root {
+  --color-background: #0c0b0a;
+  --color-surface: #151311;
+  --color-surface-elevated: #1c1916;
+
+  --color-text-primary: #f5f2eb;
+  --color-text-secondary: #aaa49a;
+  --color-text-muted: #706b63;
+
+  --color-accent: #c9a66b;
+
+  --color-border: rgba(245, 242, 235, 0.12);
+  --color-border-strong: rgba(245, 242, 235, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+/* ================================
+   LifeCaptured Hero
+   ================================ */
+
+@keyframes heroImageZoom {
+  from {
+    transform: scale(1.02);
+  }
+
+  to {
+    transform: scale(1.07);
+  }
+}
+
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroScroll {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scaleY(0.65);
+    transform-origin: top;
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+.hero-image {
+  animation: heroImageZoom 18s ease-out forwards;
+}
+
+.hero-reveal {
+  opacity: 0;
+  animation: heroReveal 0.8s ease-out forwards;
+}
+
+.hero-reveal-delay-1 {
+  animation-delay: 0.12s;
+}
+
+.hero-reveal-delay-2 {
+  animation-delay: 0.24s;
+}
+
+.hero-reveal-delay-3 {
+  animation-delay: 0.36s;
+}
+
+.hero-reveal-delay-4 {
+  animation-delay: 0.5s;
+}
+
+.hero-scroll-line {
+  animation: heroScroll 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-image,
+  .hero-reveal,
+  .hero-scroll-line {
+    animation: none;
+  }
+
+  .hero-reveal {
+    opacity: 1;
+  }
+}
