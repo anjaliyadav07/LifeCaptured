@@ -1,8 +1,10 @@
 const OpenAI = require('openai')
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-})
+const openai = process.env.OPENAI_API_KEY
+  ? new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY
+    })
+  : null
 
 const cleanArray = (value) => {
   if (!Array.isArray(value)) {
@@ -17,6 +19,11 @@ const cleanArray = (value) => {
 }
 
 const interpretMemorySearch = async (query) => {
+  if (!openai) {
+  throw new Error(
+    'AI memory search is currently unavailable because OPENAI_API_KEY is not configured'
+  )
+}
   if (!query || !query.trim()) {
     throw new Error('Search query is required')
   }
