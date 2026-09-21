@@ -290,9 +290,9 @@ Recommended screenshots:
 
 ## 🔗 Links
 
-**Live Application:** Coming soon
+**Live Application:** https://life-captured.vercel.app/
 
-**Backend API:** Coming soon
+**Backend API:** https://lifecaptured.onrender.com
 
 **GitHub:**  
 https://github.com/anjaliyadav07/LifeCaptured
