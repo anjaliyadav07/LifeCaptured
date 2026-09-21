@@ -4,7 +4,8 @@ const os = require('os')
 const https = require('https')
 const { execFile } = require('child_process')
 
-const FFMPEG_PATH = 'C:\\ffmpeg\\bin\\ffmpeg.exe'
+const FFMPEG_PATH =
+  process.env.FFMPEG_PATH || 'ffmpeg'
 
 const VIDEO_WIDTH = 1920
 const VIDEO_HEIGHT = 1080
