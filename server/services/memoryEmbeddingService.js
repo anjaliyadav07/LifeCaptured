@@ -2,9 +2,11 @@ const OpenAI = require('openai')
 
 const pool = require('../config/db')
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-})
+const openai = process.env.OPENAI_API_KEY
+  ? new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY
+    })
+  : null
 
 const EMBEDDING_MODEL = 'text-embedding-3-small'
 
@@ -49,6 +51,11 @@ const buildMemorySearchText = (memory) => {
 }
 
 const generateEmbedding = async (text) => {
+    if (!openai) {
+    throw new Error(
+      'Memory embeddings are currently unavailable because OPENAI_API_KEY is not configured'
+    )
+  }
   if (!text || !text.trim()) {
     throw new Error(
       'Memory text is required for embedding generation'

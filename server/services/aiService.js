@@ -1,8 +1,10 @@
 const OpenAI = require('openai')
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-})
+const openai = process.env.OPENAI_API_KEY
+  ? new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY
+    })
+  : null
 
 const analyzeMemory = async ({
   imageUrl,
@@ -11,6 +13,12 @@ const analyzeMemory = async ({
   location,
   memoryDate
 }) => {
+  if (!openai) {
+    throw new Error(
+      'AI memory analysis is currently unavailable because OPENAI_API_KEY is not configured'
+    )
+  }
+
   if (!imageUrl) {
     throw new Error('Memory image is required for AI analysis')
   }
