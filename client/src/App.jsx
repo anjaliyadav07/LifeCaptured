@@ -10,11 +10,27 @@ import MonthInFramesPage from './pages/MonthInFramesPage'
 import MemoryDetailPage from './pages/MemoryDetailPage'
 import TimelinePage from './pages/TimelinePage'
 import StoriesPage from './pages/StoriesPage'
+import { useState } from 'react'
+import LifeCapturedIntro from './components/LifeCapturedIntro'
 
 import AppLayout from './layouts/AppLayout'
 
 import { AuthProvider, useAuth } from './context/AuthContext'
+function LandingPageWithIntro() {
+  const [showIntro, setShowIntro] = useState(true)
 
+  return (
+    <>
+      {showIntro && (
+        <LifeCapturedIntro
+          onComplete={() => setShowIntro(false)}
+        />
+      )}
+
+      <LandingPage />
+    </>
+  )
+}
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth()
 
@@ -43,10 +59,10 @@ function AppRoutes() {
           PUBLIC ROUTES
       ========================== */}
 
-      <Route
-        path="/"
-        element={<LandingPage />}
-      />
+     <Route
+  path="/"
+  element={<LandingPageWithIntro />}
+/>
 
       <Route
         path="/login"
